@@ -3,7 +3,19 @@ require  './lib/bookmark.rb'
 require 'pg'
 
 class BookmarkWeb < Sinatra::Base
+  Bookmark.start
+  get '/' do
+    erb :index
+  end
 
+  get '/add_bookmark' do
+    erb :add_bookmark
+  end
+
+  post '/add_bookmark' do
+    Bookmark.bookmark.add(params[:title],params[:url])
+    redirect '/bookmarks'
+  end
   get '/bookmarks' do
 
 
