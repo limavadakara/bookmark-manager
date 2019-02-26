@@ -3,7 +3,8 @@ For domain model check out "Domain Model.xml"
 To set up database follow the following steps:
 
 
-<h3> For produxtion database use: </h3>
+## For produxtion database use:
+
 1. Connect to `psql`
 2. Create the database using the `psql` command `CREATE DATABASE bookmark_manager;`
 3. Connect to the database using the `psql` command `\c bookmark_manager;`
