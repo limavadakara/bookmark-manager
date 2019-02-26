@@ -1,6 +1,10 @@
 <html>
   <body>
     Here are your bookmarks
-    <%= @bookmark_list.join%>
+    <ul>
+    <% @bookmark_list.each do |url|%>
+    <li><%= url %></li>
+    <% end %>
+    </ul>
   </body>
 </html>

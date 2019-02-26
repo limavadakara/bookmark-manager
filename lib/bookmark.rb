@@ -1,11 +1,16 @@
 class Bookmark
-  BOOKMARKS = [{name: "Bookmark1"}, {name: "Bookmark2"}]
 
   def all
     @bookmark_list = []
-    BOOKMARKS.each do |bookmark|
-      @bookmark_list << bookmark[:name]
+
+    conn = PG.connect(dbname: 'bookmark_manager')
+    conn.exec("SELECT * FROM BOOKMARKS") do |result|
+  
+      result.each do |result_row|
+        @bookmark_list << result_row['url']
+      end
     end
     @bookmark_list
   end
+
 end
