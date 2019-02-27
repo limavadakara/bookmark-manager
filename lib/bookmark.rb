@@ -1,27 +1,20 @@
 class Bookmark
-  def self.start
-    @bookmark = Bookmark.new
+  def self.connection
+    if ENV['ENVIRON'] == 'test'
+      database = 'bookmark_manager_test'
+    elsif ENV['ENVIRON'] == 'live'
+      database = 'bookmark_manager'
+    end
+    @conn = PG.connect(dbname: database)
   end
 
-  def self.bookmark
-    @bookmark
-  end
-
-  def initialize
-
-        if ENV['ENVIRON'] == 'test'
-          database = 'bookmark_manager_test'
-        elsif ENV['ENVIRON'] == 'live'
-          database = 'bookmark_manager'
-        end
-        @conn = PG.connect(dbname: database)
-  end
-
-  def add(title, url)
+  def self.add(title, url)
+    connection
     @conn.exec("INSERT INTO bookmarks VALUES(DEFAULT, '#{url}')")
   end
 
-  def all
+  def self.all
+    connection
     @bookmark_list = []
 
       @conn.exec("SELECT * FROM BOOKMARKS") do |result|

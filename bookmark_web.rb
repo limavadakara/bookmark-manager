@@ -3,7 +3,6 @@ require  './lib/bookmark.rb'
 require 'pg'
 
 class BookmarkWeb < Sinatra::Base
-  Bookmark.start
   get '/' do
     erb :index
   end
@@ -13,13 +12,13 @@ class BookmarkWeb < Sinatra::Base
   end
 
   post '/add_bookmark' do
-    Bookmark.bookmark.add(params[:title],params[:url])
+    Bookmark.add(params[:title],params[:url])
     redirect '/bookmarks'
   end
   get '/bookmarks' do
 
 
-    @bookmark_list = Bookmark.new.all
+    @bookmark_list = Bookmark.all
     erb :bookmarks
   end
 
