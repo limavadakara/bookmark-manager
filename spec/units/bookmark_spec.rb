@@ -6,12 +6,13 @@ describe Bookmark do
   end
 
   it 'returns a bookmark' do
-    expect(Bookmark.all).to include('http://www.google.com')
+
+    expect(Bookmark.all).to include({:title=>'google', :url=>"http://www.google.com"})
 
   end
 
   it 'adds a bookmark ' do
     Bookmark.add('BBC', 'http://www.bbc.co.uk')
-    expect(Bookmark.all).to include('http://www.bbc.co.uk')
+    expect(Bookmark.all).to include({:title => 'BBC', :url => 'http://www.bbc.co.uk'})
   end
 end

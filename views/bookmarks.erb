@@ -2,8 +2,8 @@
   <body>
     Here are your bookmarks
     <ul>
-    <% @bookmark_list.each do |url|%>
-    <li><%= url %></li>
+    <% @bookmark_list.each do |bookmark|%>
+    <li><a href =<%= "#{bookmark[:url]}" %> > <%= "#{bookmark[:title]} "%></a></li>
     <% end %>
     </ul>
   </body>
