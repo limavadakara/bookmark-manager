@@ -15,11 +15,15 @@ class BookmarkWeb < Sinatra::Base
     Bookmark.add(params[:title],params[:url])
     redirect '/bookmarks'
   end
+
   get '/bookmarks' do
-
-
     @bookmark_list = Bookmark.all
     erb :bookmarks
+  end
+
+  post '/delete-bookmark' do
+    Bookmark.delete(params.keys[0])
+    redirect('/bookmarks')
   end
 
  run! if app_file == $0

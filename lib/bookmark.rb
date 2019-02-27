@@ -25,4 +25,8 @@ class Bookmark
     @bookmark_list
   end
 
+  def self.delete(title)
+    @conn.exec("DELETE FROM BOOKMARKS WHERE title = replace('#{title}','\"','')")
+  end
+
 end

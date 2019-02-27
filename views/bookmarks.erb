@@ -1,10 +1,17 @@
 <html>
   <body>
     Here are your bookmarks
-    <ul>
-    <% @bookmark_list.each do |bookmark|%>
-    <li><a href =<%= "#{bookmark[:url]}" %> > <%= "#{bookmark[:title]} "%></a></li>
-    <% end %>
-    </ul>
+    <form class="" action="/delete-bookmark" method="post">
+
+
+      <ul>
+      <% @bookmark_list.each do |bookmark|%>
+
+      <li><input type="radio" name=<%="#{bookmark[:title]}"%> value=<%="#{bookmark[:title]}"%> > <a href =<%= "#{bookmark[:url]}" %> > <%= "#{bookmark[:title]} "%></a></li>
+      <% end %>
+      </ul>
+
+      <input type="submit" name="Delete" value="Delete">
+    </form>
   </body>
 </html>
